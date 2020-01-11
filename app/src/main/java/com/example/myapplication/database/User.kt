@@ -7,9 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "user_tablet")
 data class User(
 
-    @PrimaryKey(autoGenerate = true)
-    var userId: Long = 0L,
-
     @ColumnInfo(name = "user_name")
     var name: String = "name",
 
@@ -21,4 +18,7 @@ data class User(
 
     @ColumnInfo(name = "detail_user_info")
     var info: String = "info"
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var userId: Long = 0L
+}

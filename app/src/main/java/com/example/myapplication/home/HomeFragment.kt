@@ -22,35 +22,20 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle? ): View? {
-        val binding = DataBindingUtil.inflate<HomeFragmentBinding>(
-            inflater, R.layout.home_fragment, container, false)
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = UserDatabase.getInstance(application).userDatabaseDao
-        val viewModelFactory = HomeViewModelFactory(dataSource, application)
+        val binding = DataBindingUtil.inflate<HomeFragmentBinding>(inflater, R.layout.home_fragment, container, false)
 
-
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
         viewModel.buttonAction.observe(this, Observer { btn ->
             btn?.let {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewInfoFragment())
-
             }
         })
-
-
-
-
-
 
         binding.lifecycleOwner = this
 
         binding.homeViewModel = viewModel
-
-
-
 
         return binding.root
     }

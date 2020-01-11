@@ -68,7 +68,6 @@
             app:layout_constraintTop_toBottomOf="@+id/ageEditText" />
 
         <Button
-            android:onClick="@{()-> newInfoViewModel.createNewUser()}"
             android:id="@+id/goToHomeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
