@@ -13,7 +13,7 @@ interface UserDatabaseDao{
     fun update(user: User)
 
     @Query("SELECT * from user_tablet WHERE userId = :id")
-    fun getId(id: Long): User
+    fun getUserWithId(id: Long): User
 
     @Query("DELETE FROM user_tablet")
     fun delete()

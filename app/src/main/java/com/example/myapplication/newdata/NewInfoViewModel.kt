@@ -4,30 +4,24 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.myapplication.database.User
-import com.example.myapplication.database.UserDatabase
 import com.example.myapplication.database.UserDatabaseDao
 import kotlinx.coroutines.*
 
 class NewInfoViewModel(
     private val database: UserDatabaseDao,
-    private var name: String,
-    private var age: String,
-    private var info: String,
-    application: Application
-) : AndroidViewModel(application) {
+    application: Application) : AndroidViewModel(application) {
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
 
-    private var _buttonAction = MutableLiveData<User>()
-    val buttonAction: LiveData<User>
-        get() = _buttonAction
+    private var _userData = MutableLiveData<User>()
+    val userData: LiveData<User>
+        get() = _userData
 
 
-    fun createNewUser() {
+    fun createNewUser(name: String, age: Int, info: String) {
         uiScope.launch {
             val newUser = User()
             newUser.name = name
@@ -35,9 +29,14 @@ class NewInfoViewModel(
             newUser.url = "url"
             newUser.info = info
             insert(newUser)
-            _buttonAction.value = newUser
-
+            _userData.value = newUser
         }
+    }
+
+
+
+    fun doneNavigating(){
+        _userData.value = null
     }
 
 

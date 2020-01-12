@@ -16,7 +16,7 @@ class HomeViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val users = database.getAllUsers()
+    val users = database.getAllUsers()
 
     val userString = Transformations.map(users){users->
         formatNights(users, application.resources)
@@ -25,7 +25,6 @@ class HomeViewModel(
     private var _buttonAction = MutableLiveData<Boolean>()
     val buttonAction: LiveData<Boolean>
         get() = _buttonAction
-
 
 
     fun clickButton(){

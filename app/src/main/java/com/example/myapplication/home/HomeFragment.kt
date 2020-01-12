@@ -29,8 +29,6 @@ class HomeFragment : Fragment() {
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
         val viewModelFactory = HomeViewModelFactory(dataSource, application)
 
-
-
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
 
         viewModel.buttonAction.observe(this, Observer { btn ->
@@ -40,16 +38,17 @@ class HomeFragment : Fragment() {
             }
         })
 
-
-
-
-
-
         binding.lifecycleOwner = this
-
         binding.homeViewModel = viewModel
 
+        val adapter = UserAdapter()
+        binding.userList.adapter  = adapter
 
+        viewModel.users.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
 
         return binding.root

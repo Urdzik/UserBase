@@ -20,7 +20,6 @@ fun formatNights(nights: List<User>, resources: Resources): Spanned {
             append("\t${it.info}<br>")
 
         }
-
         // fromHtml is deprecated for target API without a flag, but since our minSDK is 19, we
         // can't use the newer version, which requires minSDK of 24
         //https://developer.android.com/reference/android/text/Html#fromHtml(java.lang.String,%20int)
