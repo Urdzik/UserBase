@@ -23,9 +23,8 @@ class UserAdapter : ListAdapter<User, UserAdapter.UserViewHolder>(UserDiffCallba
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: User) {
-            binding.userName.text = item.name
-            binding.userAge.text = item.age.toString()
-            binding.userInfo.text = item.info
+            binding.user = item
+            binding.executePendingBindings()
         }
 
         companion object {
