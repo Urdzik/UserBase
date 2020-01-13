@@ -1,19 +1,20 @@
 package com.example.myapplication.datailinfo
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication.R
+import com.example.myapplication.database.UserDatabase
+import com.example.myapplication.databinding.DetailInfoFragmentBinding
 
 class DetailInfoFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DetailInfoFragment()
-    }
 
     private lateinit var viewModel: DetailInfoViewModel
 
@@ -21,9 +22,40 @@ class DetailInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.detail_info_fragment, container, false)
-    }
 
+        val binding = DataBindingUtil.inflate<DetailInfoFragmentBinding>(
+            inflater,
+            R.layout.detail_info_fragment,
+            container,
+            false
+        )
+
+        val application = requireNotNull(this.activity).application
+        val arguments = DetailInfoFragmentArgs.fromBundle(arguments!!)
+
+        val dataSource = UserDatabase.getInstance(application).userDatabaseDao
+
+        val viewModalFactory = DetailInfoViewModalFactory(arguments.key, dataSource)
+
+        viewModel =
+            ViewModelProviders.of(this, viewModalFactory).get(DetailInfoViewModel::class.java)
+
+        binding.detailViewModal = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.navigationToHomeFragment.observe(this, Observer {
+            if (it == true) {
+                findNavController().navigate(DetailInfoFragmentDirections.actionDetailInfoFragmentToHomeFragment())
+                viewModel.doneNavigated()
+            }
+        })
+
+
+
+
+
+        return binding.root
+    }
 
 
 }

@@ -1,13 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".datailinfo.DetailInfoFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+
+        <variable
+            name="detailViewModal"
+            type="com.example.myapplication.datailinfo.DetailInfoViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent" >
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/datail_user_image"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="24dp"
+            android:src="?android:attr/colorButtonNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/datail_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            android:textAlignment="center"
+            android:textColor="#1F1F1F"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/datail_user_image"
+            app:layout_constraintStart_toStartOf="@+id/datail_user_image"
+            app:layout_constraintTop_toBottomOf="@+id/datail_user_image" />
+
+        <TextView
+            android:id="@+id/detail_user_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Age"
+            android:textAlignment="center"
+            android:textColor="#4F141414"
+            app:layout_constraintEnd_toEndOf="@+id/datail_user_name"
+            app:layout_constraintStart_toStartOf="@+id/datail_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/datail_user_name" />
+
+        <TextView
+            android:id="@+id/detail_user_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/info_text"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_user_age" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

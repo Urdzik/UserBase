@@ -13,7 +13,7 @@ interface UserDatabaseDao{
     fun update(user: User)
 
     @Query("SELECT * from user_tablet WHERE userId = :id")
-    fun getUserWithId(id: Long): User
+    fun get(id: Long): User
 
     @Query("DELETE FROM user_tablet")
     fun delete()
@@ -23,6 +23,9 @@ interface UserDatabaseDao{
 
     @Query("SELECT * FROM user_tablet ORDER BY userId")
     fun getAllUsers(): LiveData<List<User>>
+
+    @Query("SELECT * FROM user_tablet Where userId = :key ")
+    fun getUserWithId(key: Long): LiveData<User>
 
 
 

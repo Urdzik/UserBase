@@ -48,6 +48,9 @@ class UserDiffCallback : DiffUtil.ItemCallback<User>() {
 
 }
 
+//class UserListener(){
+//    fun onClick(user: User) =
+//}
 
 
 
