@@ -1,5 +1,6 @@
 package com.example.myapplication.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,21 +9,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.database.User
 import com.example.myapplication.databinding.ItemListBinding
 
-class UserAdapter : ListAdapter<User, UserAdapter.UserViewHolder>(UserDiffCallback()) {
+class UserAdapter(val clickListener: UserListener) : ListAdapter<User, UserAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+        holder.bind(getItem(position), clickListener)
     }
 
     class UserViewHolder private constructor(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: User) {
+        fun bind(
+            item: User,
+            clickListener: UserListener
+        ) {
+            binding.clickListener = clickListener
             binding.user = item
             binding.executePendingBindings()
         }
@@ -42,15 +46,16 @@ class UserDiffCallback : DiffUtil.ItemCallback<User>() {
         return oldItem.userId == newItem.userId
     }
 
+    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
         return oldItem == newItem
     }
 
 }
 
-//class UserListener(){
-//    fun onClick(user: User) =
-//}
+class UserListener(val clickListener: (userId: Long) -> Unit) {
+    fun onClick(user: User) = clickListener(user.userId)
+}
 
 
 

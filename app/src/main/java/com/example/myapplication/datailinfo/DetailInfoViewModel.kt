@@ -7,6 +7,7 @@ import com.example.myapplication.database.User
 import com.example.myapplication.database.UserDatabaseDao
 import kotlinx.coroutines.Job
 
+
 class DetailInfoViewModel(
     private val userKey: Long = 0L,
     dataSource: UserDatabaseDao) : ViewModel() {
@@ -17,7 +18,7 @@ class DetailInfoViewModel(
 
     private val user: LiveData<User>
 
-    fun getNight() = user
+    fun getUser() = user
 
     init {
         user = database.getUserWithId(userKey)

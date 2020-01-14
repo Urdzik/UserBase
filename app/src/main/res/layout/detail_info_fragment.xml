@@ -8,6 +8,7 @@
         <variable
             name="detailViewModal"
             type="com.example.myapplication.datailinfo.DetailInfoViewModel" />
+
     </data>
 
 
@@ -37,7 +38,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/datail_user_image"
             app:layout_constraintStart_toStartOf="@+id/datail_user_image"
-            app:layout_constraintTop_toBottomOf="@+id/datail_user_image" />
+            app:layout_constraintTop_toBottomOf="@+id/datail_user_image"
+            app:userName="@{detailViewModal.user}"/>
 
         <TextView
             android:id="@+id/detail_user_age"
@@ -50,7 +52,8 @@
             android:textColor="#4F141414"
             app:layout_constraintEnd_toEndOf="@+id/datail_user_name"
             app:layout_constraintStart_toStartOf="@+id/datail_user_name"
-            app:layout_constraintTop_toBottomOf="@+id/datail_user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/datail_user_name"
+            app:userAge="@{detailViewModal.user}"/>
 
         <TextView
             android:id="@+id/detail_user_info"
@@ -64,6 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_user_age" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_user_age"
+            app:userInfo="@{detailViewModal.user}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

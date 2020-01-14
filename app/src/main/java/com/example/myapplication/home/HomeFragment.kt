@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -41,12 +42,23 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.homeViewModel = viewModel
 
-        val adapter = UserAdapter()
+        val adapter = UserAdapter(UserListener { userId ->
+            Toast.makeText(context,"$userId", Toast.LENGTH_SHORT).show()
+            viewModel.onUserClicked(userId)
+        })
+
         binding.userList.adapter  = adapter
 
         viewModel.users.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        viewModel.navigationToDetailInfo.observe(this, Observer { night->
+            night?.let {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailInfoFragment(night))
+                viewModel.onUserDtailInfoNavigated()
             }
         })
 

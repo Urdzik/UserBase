@@ -4,17 +4,27 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.myapplication.database.User
 
+
 @BindingAdapter("userName")
-fun TextView.setUserName(item: User) {
-    text = item.name
+fun TextView.setUserName(item: User?) {
+    item?.let {
+        text = item.name
+    }
+
 }
 
 @BindingAdapter("userAge")
-fun TextView.setUserAge(item: User) {
-    text = item.age.toString()
+fun TextView.setUserAge(item: User?) {
+    item?.let {
+        text = item.age.toString()
+    }
+
 }
 
 @BindingAdapter("userInfo")
-fun TextView.setUserInfo(item: User) {
-    text = item.info
+fun TextView.setUserInfo(item: User?) {
+    item?.let {
+        text = item.info
+    }
+
 }

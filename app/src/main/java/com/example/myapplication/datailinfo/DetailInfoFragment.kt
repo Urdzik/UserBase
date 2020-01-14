@@ -1,6 +1,7 @@
 package com.example.myapplication.datailinfo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,6 @@ import com.example.myapplication.databinding.DetailInfoFragmentBinding
 class DetailInfoFragment : Fragment() {
 
 
-    private lateinit var viewModel: DetailInfoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +31,15 @@ class DetailInfoFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val arguments = DetailInfoFragmentArgs.fromBundle(arguments!!)
+
+        val arguments = DetailInfoFragmentArgs.fromBundle(arguments!!).key
+        Log.i("id", arguments.toString())
 
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
 
-        val viewModalFactory = DetailInfoViewModalFactory(arguments.key, dataSource)
+        val viewModalFactory = DetailInfoViewModalFactory(arguments, dataSource)
 
-        viewModel =
-            ViewModelProviders.of(this, viewModalFactory).get(DetailInfoViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, viewModalFactory).get(DetailInfoViewModel::class.java)
 
         binding.detailViewModal = viewModel
         binding.lifecycleOwner = this

@@ -10,7 +10,7 @@ class DetailInfoViewModalFactory (
     private val dataSource: UserDatabaseDao): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailInfoViewModel::class.java)){
-            DetailInfoViewModel(userKey, dataSource)
+             return DetailInfoViewModel(userKey, dataSource) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
