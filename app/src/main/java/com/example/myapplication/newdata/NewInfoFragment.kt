@@ -2,6 +2,7 @@ package com.example.myapplication.newdata
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,8 +33,11 @@ class NewInfoFragment : Fragment() {
         binding.goToHomeBtn.setOnClickListener {
             val name  = binding.nameEditText.text.toString()
             val info = binding.infoEditText.text.toString()
-            val age = binding.ageEditText.text.toString().toInt()
-            viewModel.createNewUser(name, age, info)
+            val age = binding.ageEditText.text.toString()
+            Log.i("age", age.toString())
+            val url = binding.urlEditText.toString()
+                viewModel.createNewUser(name, age, info, url)
+
         }
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewInfoViewModel::class.java)
