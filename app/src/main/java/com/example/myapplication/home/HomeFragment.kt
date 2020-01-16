@@ -18,7 +18,6 @@ import com.example.myapplication.databinding.HomeFragmentBinding
 
 class HomeFragment : Fragment() {
 
-    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,8 +28,8 @@ class HomeFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = UserDatabase.getInstance(application).userDatabaseDao
         val viewModelFactory = HomeViewModelFactory(dataSource, application)
-
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
+        val adapter = UserAdapter(UserListener { userId -> viewModel.onUserClicked(userId) })
 
         viewModel.buttonAction.observe(this, Observer { btn ->
             btn?.let {
@@ -39,13 +38,18 @@ class HomeFragment : Fragment() {
             }
         })
 
+        viewModel.navigationToDetailInfo.observe(this, Observer { night->
+            night?.let {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailInfoFragment(night))
+                viewModel.onUserDetailInfoNavigated()
+            }
+        })
+
+
         binding.lifecycleOwner = this
+
         binding.homeViewModel = viewModel
 
-        val adapter = UserAdapter(UserListener { userId ->
-            Toast.makeText(context,"$userId", Toast.LENGTH_SHORT).show()
-            viewModel.onUserClicked(userId)
-        })
         binding.userList.adapter  = adapter
 
         viewModel.users.observe(viewLifecycleOwner, Observer {
@@ -53,14 +57,6 @@ class HomeFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-
-        viewModel.navigationToDetailInfo.observe(this, Observer { night->
-            night?.let {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailInfoFragment(night))
-                viewModel.onUserDtailInfoNavigated()
-            }
-        })
-
 
         return binding.root
     }

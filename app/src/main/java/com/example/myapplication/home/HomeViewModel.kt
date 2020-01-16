@@ -13,9 +13,9 @@ class HomeViewModel(
 ) : AndroidViewModel(application) {
 
     val users = database.getAllUsers()
+
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
 
     private var _buttonAction = MutableLiveData<Boolean>()
     val buttonAction: LiveData<Boolean>
@@ -29,19 +29,14 @@ class HomeViewModel(
     fun onUserClicked(id: Long) {
         _navigationToDetailInfo.value = id
     }
-    fun onUserDtailInfoNavigated(){
+
+    fun onUserDetailInfoNavigated() {
         _navigationToDetailInfo.value = null
     }
 
-    fun onDelete(){
+    fun onDelete() {
         uiScope.launch {
             delete()
-        }
-    }
-
-    private suspend fun delete(){
-        withContext(Dispatchers.IO){
-            database.delete()
         }
     }
 
@@ -49,8 +44,17 @@ class HomeViewModel(
         _buttonAction.value = true
     }
 
-    fun doneNavigated(){
+    fun doneNavigated() {
         _buttonAction.value = null
     }
 
+    private suspend fun delete() {
+        withContext(Dispatchers.IO) {
+            database.delete()
+        }
+    }
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
 }

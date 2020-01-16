@@ -16,11 +16,9 @@ class NewInfoViewModel(
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-
     private var _userData = MutableLiveData<User>()
     val userData: LiveData<User>
         get() = _userData
-
 
     fun createNewUser(name: String, age: String, info: String) {
         uiScope.launch {
@@ -33,18 +31,15 @@ class NewInfoViewModel(
         }
     }
 
-
     fun doneNavigating() {
         _userData.value = null
     }
-
 
     private suspend fun insert(newUser: User) {
         withContext(Dispatchers.IO) {
             database.insert(newUser)
         }
     }
-
 
     override fun onCleared() {
         super.onCleared()

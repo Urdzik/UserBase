@@ -9,7 +9,7 @@ import kotlinx.coroutines.Job
 
 
 class DetailInfoViewModel(
-    private val userKey: Long = 0L,
+    userKey: Long = 0L,
     dataSource: UserDatabaseDao) : ViewModel() {
 
     val database = dataSource
@@ -32,11 +32,6 @@ class DetailInfoViewModel(
     fun doneNavigated() {
         _navigationToHomeFragment.value = null
     }
-
-    fun onClose() {
-        _navigationToHomeFragment.value = true
-    }
-
 
     override fun onCleared() {
         super.onCleared()

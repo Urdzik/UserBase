@@ -18,7 +18,6 @@ fun TextView.setUserName(item: User?) {
     item?.let {
         text = item.name
     }
-
 }
 
 @BindingAdapter("userAge")
@@ -26,7 +25,6 @@ fun TextView.setUserAge(item: User?) {
     item?.let {
         text = item.age.toString()
     }
-
 }
 
 @BindingAdapter("userInfo")
