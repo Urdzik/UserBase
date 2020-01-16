@@ -16,9 +16,6 @@ data class User(
     @ColumnInfo(name = "user_age")
     var age: Int = 0,
 
-    @ColumnInfo(name = "user_photo")
-    var url: String = "url",
-
     @ColumnInfo(name = "detail_user_info")
     var info: String = "info"
 )

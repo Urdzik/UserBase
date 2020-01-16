@@ -7,9 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
+
 import com.example.myapplication.R
 import com.example.myapplication.database.User
 import kotlinx.android.synthetic.main.item_list.view.*
@@ -38,14 +36,3 @@ fun TextView.setUserInfo(item: User?) {
     }
 }
 
-@BindingAdapter("userPhoto")
-fun setUserPhoto(imgView: ImageView, imgUtl: String?){
-    imgUtl?.let {
-        val imgUri = imgUtl.toUri().buildUpon().scheme("https").build()
-         Glide.with(imgView.context)
-             .load(imgUri)
-             .error(R.drawable.ic_launcher_background)
-             .centerCrop()
-             .into(imgView)
-    }
-}

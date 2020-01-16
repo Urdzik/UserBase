@@ -34,8 +34,7 @@ class NewInfoFragment : Fragment() {
             val name  = binding.nameEditText.text.toString()
             val info = binding.infoEditText.text.toString()
             val age = binding.ageEditText.text.toString()
-            val url = binding.urlEditText.toString()
-                viewModel.createNewUser(name, age, info, url)
+                viewModel.createNewUser(name, age, info)
 
         }
 

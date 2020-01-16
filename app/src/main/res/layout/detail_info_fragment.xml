@@ -16,31 +16,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ImageView
-            android:id="@+id/datail_user_image"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="24dp"
-            android:src="?android:attr/colorButtonNormal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:userPhoto="@{detailViewModal.user.url}"/>
 
         <TextView
             android:id="@+id/datail_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Name"
+            android:layout_marginTop="32dp"
             android:textAlignment="center"
             android:textColor="#1F1F1F"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/datail_user_image"
-            app:layout_constraintStart_toStartOf="@+id/datail_user_image"
-            app:layout_constraintTop_toBottomOf="@+id/datail_user_image"
-            app:userName="@{detailViewModal.user}"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:userName="@{detailViewModal.user}"
+            tools:text="Name" />
 
         <TextView
             android:id="@+id/detail_user_age"
@@ -48,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:text="Age"
+            tools:text="Age"
             android:textAlignment="center"
             android:textColor="#4F141414"
             app:layout_constraintEnd_toEndOf="@+id/datail_user_name"
@@ -63,7 +53,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
-            android:text="@string/info_text"
+            tools:text="@string/info_text"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

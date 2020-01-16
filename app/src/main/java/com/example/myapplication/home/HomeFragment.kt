@@ -46,7 +46,6 @@ class HomeFragment : Fragment() {
             Toast.makeText(context,"$userId", Toast.LENGTH_SHORT).show()
             viewModel.onUserClicked(userId)
         })
-
         binding.userList.adapter  = adapter
 
         viewModel.users.observe(viewLifecycleOwner, Observer {

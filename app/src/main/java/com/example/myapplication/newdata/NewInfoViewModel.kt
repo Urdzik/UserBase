@@ -22,13 +22,12 @@ class NewInfoViewModel(
         get() = _userData
 
 
-    fun createNewUser(name: String, age: String, info: String, url: String) {
+    fun createNewUser(name: String, age: String, info: String) {
         uiScope.launch {
             val newUser = User()
             if (name.isNotEmpty() && name != "") newUser.name = name else newUser.name = "No information"
-            if (age.isNotEmpty() && age != "") newUser.age = age.toInt() else newUser.age = 1
+            if (age.isNotEmpty() && age != "") newUser.age = age.toInt() else newUser.age = 0
             if (info.isNotEmpty() && info != "") newUser.info = info else newUser.info = "No information"
-            if (url.isNotEmpty() && url != "") newUser.url = url else newUser.url = "https://i.pinimg.com/736x/be/72/db/be72db69a324029ca229efb03445dd0f.jpg"
             insert(newUser)
             _userData.value = newUser
         }
