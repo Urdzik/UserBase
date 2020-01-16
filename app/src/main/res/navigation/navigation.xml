@@ -10,11 +10,11 @@
         android:label="HomeFragment"
         tools:layout="@layout/home_fragment">
         <action
-            android:id="@+id/action_homeFragment_to_newInfoFragment"
-            app:destination="@id/newInfoFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_detailInfoFragment"
             app:destination="@id/detailInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newInfoFragment"
+            app:destination="@id/newInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/newInfoFragment"

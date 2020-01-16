@@ -11,6 +11,11 @@
        <variable
            name="clickListener"
            type="com.example.myapplication.home.UserListener" />
+
+        <variable
+            name="newInfoViewModel"
+            type="com.example.myapplication.newdata.NewInfoViewModel" />
+
     </data>
 
 
@@ -64,8 +69,7 @@
             android:background="#9A9A9A"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:color/darker_gray"
-            app:userPhoto="@{user}"/>
+            app:userPhoto="@{user.url}"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

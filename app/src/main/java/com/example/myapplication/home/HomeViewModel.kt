@@ -35,4 +35,8 @@ class HomeViewModel(
         _buttonAction.value = true
     }
 
+    fun doneNavigated(){
+        _buttonAction.value = null
+    }
+
 }

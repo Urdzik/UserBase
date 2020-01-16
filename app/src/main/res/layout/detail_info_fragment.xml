@@ -24,7 +24,8 @@
             android:src="?android:attr/colorButtonNormal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:userPhoto="@{detailViewModal.user.url}"/>
 
         <TextView
             android:id="@+id/datail_user_name"

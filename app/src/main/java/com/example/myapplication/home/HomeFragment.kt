@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         viewModel.buttonAction.observe(this, Observer { btn ->
             btn?.let {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewInfoFragment())
-
+                viewModel.doneNavigated()
             }
         })
 
